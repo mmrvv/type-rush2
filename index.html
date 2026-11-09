@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Type Rush</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ПРИВЕТСТВЕННЫЙ ЭКРАН И АВТОРИЗАЦИЯ -->
+    <div id="welcome-screen" class="welcome-container">
+        <div class="bg-decorations">
+            <span class="bg-item bg-text-1">WPM 120+</span>
+            <span class="bg-item bg-text-2">ACCURACY 100%</span>
+            <span class="bg-item bg-text-3">TIME 30s</span>
+            <span class="bg-item bg-text-4">SPEED TYPE</span>
+            <div class="bg-item bg-keyboard-1">⌨️</div>
+            <div class="bg-item bg-keyboard-2">⌨️</div>
+            <div class="bg-item bg-icon-1">⚡</div>
+            <div class="bg-item bg-icon-2">🔥</div>
+        </div>
+
+        <div class="welcome-card large-card">
+            <h1>Type <span>Rush</span></h1>
+            <p class="welcome-text-en">Want to type faster? Start practicing with us!</p>
+            <p class="welcome-text">Хочешь быстро писать? Начинай вместе с нами!</p>
+            
+            <!-- БЛОК АВТОРИЗАЦИИ С НАСТОЯЩИМИ ЭМБЛЕМАМИ -->
+            <div class="auth-box" id="auth-box">
+                <p class="auth-title" id="auth-title-text">Войти через:</p>
+                <div class="auth-buttons">
+                    <button class="auth-btn google-btn" data-provider="Google">
+                        <svg class="provider-icon" viewBox="0 0 24 24"><path fill="#EA4335" d="M12 5c1.6 0 3 .6 4.1 1.6l3.1-3.1C17.3 1.8 14.8 1 12 1 7.4 1 3.5 3.6 1.6 7.4l3.7 2.9C6.2 7.1 8.9 5 12 5z"/><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.7-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.8z"/><path fill="#FBBC05" d="M5.3 14.7c-.2-.7-.4-1.5-.4-2.7s.2-2 .4-2.7L1.6 6.4C.6 8.4 0 10.6 0 13s.6 4.6 1.6 6.6l3.7-2.9z"/><path fill="#34A853" d="M12 23c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3.1 0-5.8-2.1-6.7-5.3L1.6 15.6C3.5 19.4 7.4 23 12 23z"/></svg>
+                        Google
+                    </button>
+                    <button class="auth-btn github-btn" data-provider="GitHub">
+                        <svg class="provider-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                        GitHub
+                    </button>
+                    <button class="auth-btn facebook-btn" data-provider="Facebook">
+                        <svg class="provider-icon" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        Facebook
+                    </button>
+                </div>
+                <button id="guest-btn" class="guest-btn">👻 Войти как гость / As Guest</button>
+            </div>
+
+            <button id="start-btn" class="btn-start hidden" tabindex="-1">Start</button>
+        </div>
+    </div>
+
+    <!-- ИГРОВОЙ ЭКРАН -->
+    <div id="game-screen" class="card-container hidden">
+        <div class="header">
+            <h2>Type <span>Rush</span></h2>
+
+            <div class="theme-selector-box">
+                <label for="theme-select" id="theme-label">🎨 Тема:</label>
+                <select id="theme-select" class="theme-select"></select>
+            </div>
+
+            <button id="leaderboard-btn" class="leaderboard-btn" tabindex="-1">🏆 Рейтинг</button>
+
+            <div class="lang-selector">
+                <button class="lang-btn active" data-lang="ru">Русский</button>
+                <button class="lang-btn" data-lang="en">English</button>
+            </div>
+            
+            <div class="modes" id="mode-selector">
+                <button class="mode-btn active" data-time="15">15s</button>
+                <button class="mode-btn" data-time="30">30s</button>
+                <button class="mode-btn" data-time="45">45s</button>
+                <button class="mode-btn" data-time="60">60s</button>
+                <button class="mode-btn" data-time="90">90s</button>
+                <button class="mode-btn" data-time="120">120s</button>
+                <button class="mode-btn practice-btn" data-time="practice">Учебный</button>
+                
+                <div class="custom-time-box">
+                    <input type="number" id="custom-time-input" placeholder="Sec..." min="1" max="99999" title="Свое время в секундах">
+                    <button id="custom-time-btn" class="custom-btn">OK</button>
+                </div>
+            </div>
+
+            <div class="stats-box" id="stats-box">
+                <div class="stat">WPM: <span id="wpm">0</span></div>
+                <div class="stat">ACC: <span id="accuracy">100</span>%</div>
+                <div class="stat">TIME: <span id="time">15s</span></div>
+            </div>
+        </div>
+
+        <div id="tutorial-box" class="tutorial-card hidden">
+            <h3 id="tut-title">🎓 Обучение слепой печати:</h3>
+            <div class="tutorial-steps">
+                <div class="step-item">
+                    <span class="step-num">1</span>
+                    <p id="tut-step-1">Поставьте пальцы на базовый ряд. Указательные пальцы лежат на клавишах с бугорками.</p>
+                </div>
+                <div class="step-item">
+                    <span class="step-num">2</span>
+                    <p id="tut-step-2">Не смотрите на клавиатуру — тренируйте мышечную память.</p>
+                </div>
+            </div>
+            <div class="finger-guide">
+                <p>👉 <span id="exercise-title">Упражнение 1</span></p>
+            </div>
+        </div>
+        
+        <div id="text-box" class="text-display"></div>
+        <div class="keyboard" id="virtual-keyboard"></div>
+
+        <div class="footer-actions">
+            <button id="restart-btn" class="btn-primary" tabindex="-1">Restart</button>
+            <button id="sound-toggle-btn" class="sound-btn" tabindex="-1">🔊 Звук: ВКЛЮЧЕН</button>
+        </div>
+    </div>
+
+    <!-- МОДАЛЬНОЕ ОКНО РЕЙТИНГА -->
+    <div id="leaderboard-modal" class="modal-overlay hidden">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="modal-title">🏆 Таблица Рекордов и Статистики</h3>
+                <button id="close-modal-btn" class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <ul id="leaderboard-list"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
